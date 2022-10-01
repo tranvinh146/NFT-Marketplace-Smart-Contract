@@ -35,11 +35,11 @@ async function updateContractAddress(hre: HardhatRuntimeEnvironment) {
     const nftMarketplace = await ethers.getContract("NftMarketplace");
     const contractAddresses = JSON.parse(fs.readFileSync(contractAddressesFile, "utf-8"));
     if (chainId! in contractAddresses) {
-        if (!contractAddresses[chainId!]["NftMarketplace"].includes(nftMarketplace.address)) {
-            contractAddresses[chainId!]["NftMarketplace"].push(nftMarketplace.address);
+        if (!contractAddresses[chainId!]["nftMarketplace"].includes(nftMarketplace.address)) {
+            contractAddresses[chainId!]["nftMarketplace"].push(nftMarketplace.address);
         }
     } else {
-        contractAddresses[chainId!] = { NftMarketplace: [nftMarketplace.address] };
+        contractAddresses[chainId!] = { nftMarketplace: [nftMarketplace.address] };
     }
     fs.writeFileSync(contractAddressesFile, JSON.stringify(contractAddresses));
 }
